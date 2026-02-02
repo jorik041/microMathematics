@@ -17,12 +17,9 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -42,7 +39,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mkulesh.micromath.fman.AdapterDocuments;
@@ -51,6 +47,7 @@ import com.mkulesh.micromath.plus.R;
 import com.mkulesh.micromath.utils.AppLocale;
 import com.mkulesh.micromath.utils.AppTheme;
 import com.mkulesh.micromath.utils.CompatUtils;
+import com.mkulesh.micromath.utils.ExitConfirm;
 import com.mkulesh.micromath.utils.ViewUtils;
 
 import java.util.ArrayList;
@@ -67,7 +64,6 @@ public class MainActivity extends AppCompatActivity
 
     private static final int STORAGE_PERMISSION_REQID = 255;
     private static final int SETTINGS_ACTIVITY_REQID = 256;
-    private static final String EXIT_CONFIRM = "exit_confirm";
     private static final String SHORTCUT_NEW_DOCUMENT = "com.mkulesh.micromath.plus.NEW_DOCUMENT";
     private static final String SHORTCUT_OPEN_FILE = "com.mkulesh.micromath.plus.OPEN_FILE";
     private static final String SHORTCUT_AUTOTEST = "com.mkulesh.micromath.plus.AUTOTEST";
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle mDrawerToggle;
     private Uri externalUri = null;
     private boolean autotestOnStart = false;
-    private Toast exitToast = null;
+    private ExitConfirm exitConfirm = null;
     private int orientation;
     private boolean instanceStateEmpty = true;
 
@@ -98,6 +94,7 @@ public class MainActivity extends AppCompatActivity
         setTheme(AppTheme.getTheme(this, AppTheme.ThemeType.MAIN_THEME));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        exitConfirm = new ExitConfirm(true, this);
 
         orientation = getResources().getConfiguration().orientation;
         String versionName;
@@ -236,6 +233,10 @@ public class MainActivity extends AppCompatActivity
             }
         };
         CompatUtils.setDrawerListener(mDrawerLayout, mDrawerToggle);
+        if (CompatUtils.isVanillaIceCreamOrLater() && exitConfirm != null)
+        {
+            getOnBackPressedDispatcher().addCallback(this, exitConfirm);
+        }
     }
 
     @Override
@@ -324,38 +325,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @SuppressLint("GestureBackNavigation")
     @Override
     public void onBackPressed()
     {
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!preferences.getBoolean(EXIT_CONFIRM, false))
+        if (!CompatUtils.isVanillaIceCreamOrLater() && exitConfirm != null)
         {
-            finish();
-        }
-        else if (CompatUtils.isToastVisible(exitToast))
-        {
-            exitToast.cancel();
-            exitToast = null;
-            finish();
-        }
-        else
-        {
-            exitToast = Toast.makeText(this, R.string.action_exit_confirm, Toast.LENGTH_LONG);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
-            {
-                exitToast.addCallback(new Toast.Callback()
-                {
-                    @Override
-                    public void onToastHidden()
-                    {
-                        exitToast = null;
-                    }
-                });
-            }
-            if (exitToast != null)
-            {
-                exitToast.show();
-            }
+            exitConfirm.handleOnBackPressed();
         }
     }
 
