@@ -111,13 +111,17 @@ public class Equation extends CalculationResult implements ArgumentHolderIf, Cal
         {
             n += getArguments().toString();
         }
-        if (isIntervalTerm())
+        if (isIntervalEq(true))
         {
-            n += ": interval";
+            n += "; interval";
+        }
+        if (isDerivedInterval())
+        {
+            n += "(derived)";
         }
         else if (isArray())
         {
-            n += ": array";
+            n += "; array";
         }
         return "Formula " + getBaseType().toString() + "(Id: " + getId() + ", Name: " + n + ")";
     }
@@ -176,7 +180,7 @@ public class Equation extends CalculationResult implements ArgumentHolderIf, Cal
                 break;
             }
             // check that the equation is an interval
-            if (isIntervalTerm())
+            if (isIntervalEq(true))
             {
                 arrayResult = new EquationArrayResult(this, null);
                 break;
@@ -359,9 +363,26 @@ public class Equation extends CalculationResult implements ArgumentHolderIf, Cal
         {
             return;
         }
-        if (isIntervalTerm())
+        if (isIntervalEq(false))
         {
             ((Intervals) rightTerm.getTerm()).getInterval(arrayResult, thread);
+        }
+        else if (isDerivedInterval() && getDirectIntervals().size() == 1)
+        {
+            final Equation arg = getDirectIntervals().get(0);
+            final CalculatedValue[] argValues = new CalculatedValue[1];
+            argValues[0] = new CalculatedValue();
+            final CalculatedValue[] xValues = arg.getInterval();
+            if (xValues != null)
+            {
+                arrayResult.resize1D(xValues.length);
+                for (int xIndex = 0; xIndex < xValues.length; xIndex++)
+                {
+                    argValues[0].assign(xValues[xIndex]);
+                    arg.setArgumentValues(argValues);
+                    rightTerm.getValue(thread, arrayResult.getValue1D(xIndex));
+                }
+            }
         }
         else
         {
@@ -476,12 +497,22 @@ public class Equation extends CalculationResult implements ArgumentHolderIf, Cal
      */
     public boolean isInterval()
     {
-        return isArray() || isIntervalTerm();
+        return isArray() || isIntervalEq(true);
     }
 
-    private boolean isIntervalTerm()
+    private boolean isDerivedInterval()
     {
-        return (rightTerm.getTerm() != null && rightTerm.getTerm() instanceof Intervals);
+        final ArrayList<String> args = getArguments();
+        return getDirectIntervals().size() == 1 && (args == null || args.isEmpty());
+    }
+
+    private boolean isIntervalEq(boolean considerDerived)
+    {
+        if (rightTerm.getTerm() != null && rightTerm.getTerm() instanceof Intervals)
+        {
+            return true;
+        }
+        return considerDerived && isDerivedInterval();
     }
 
     /**
