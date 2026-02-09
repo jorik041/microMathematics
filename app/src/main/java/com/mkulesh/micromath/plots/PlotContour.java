@@ -41,6 +41,8 @@ import com.mkulesh.micromath.properties.LineProperties;
 import com.mkulesh.micromath.properties.PlotProperties;
 import com.mkulesh.micromath.properties.PlotProperties.TwoDPlotStyle;
 import com.mkulesh.micromath.properties.PlotPropertiesChangeIf;
+import com.mkulesh.micromath.ta.TestCase;
+import com.mkulesh.micromath.ta.TestSession;
 import com.mkulesh.micromath.undo.FormulaState;
 import com.mkulesh.micromath.utils.CompatUtils;
 import com.mkulesh.micromath.utils.ViewUtils;
@@ -186,6 +188,11 @@ public class PlotContour extends CalculationResult implements SizeChangingLayout
         {
             ((SurfacePlotView) functionView).renderSurface(function);
         }
+        final TestSession ta = getFormulaList().getTaSession();
+        if (ta != null)
+        {
+            ta.setResult(TestCase.REGISTER_PLOT, null, this.toString());
+        }
     }
 
     @Override
@@ -213,6 +220,25 @@ public class PlotContour extends CalculationResult implements SizeChangingLayout
             functionView.setFunction(null);
         }
         functionView.invalidate();
+        final TestSession ta = getFormulaList().getTaSession();
+        if (ta != null)
+        {
+            final ArrayList<String> res = new ArrayList<>();
+            res.add(yMax != null ? yMax.getText() : "null");
+            res.add(yMin != null ? yMin.getText() : "null");
+            res.add(xMin != null ? xMin.getText() : "null");
+            res.add(xMax != null ? xMax.getText() : "null");
+            if (functionView.getColorMapView().getLabels() != null)
+            {
+                final int zLength = functionView.getColorMapView().getLabels().length;
+                if (zLength > 0)
+                {
+                    res.add(functionView.getColorMapView().getLabels()[0].getName());
+                    res.add(functionView.getColorMapView().getLabels()[zLength - 1].getName());
+                }
+            }
+            ta.setResult(TestCase.RESULT_PLOT_BOUNDS, "[" + res + "]", this.toString());
+        }
     }
 
     /*--------------------------------------------------------*
