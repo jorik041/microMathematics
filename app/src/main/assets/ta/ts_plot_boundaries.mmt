@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<micromath xmlns:mmt="http://micromath.mkulesh.com">
+  <formulaList documentVersion="2" author="Mikhail Kulesh" title="Test of plot borders" description="Automatic test" textWidth="60" significantDigits="6" scale="0.50000" redefineAllowed="true">
+    <equation>
+      <term key="leftTerm" text="begin" />
+      <term key="rightTerm" text="0" />
+    </equation>
+    <text_fragment numbering="true">
+      <term key="text" text="TC: equal boundaries for 2D and 3D plots" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="begin" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="1" />
+        <term key="rightTerm" text="begin" />
+      </term>
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="begin" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="ξ" />
+      <term key="rightTerm" text="1" />
+    </equation>
+    <equation>
+      <term key="leftTerm" text="x" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="-ξ" />
+        <term key="nextValue" code="mult">
+          <term key="leftTerm" text="-ξ" />
+          <term key="rightTerm" text="0.95" />
+        </term>
+        <term key="maxValue" text="ξ" />
+      </term>
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="y" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="-ξ" />
+        <term key="nextValue" code="mult">
+          <term key="leftTerm" text="-ξ" />
+          <term key="rightTerm" text="0.95" />
+        </term>
+        <term key="maxValue" text="ξ" />
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="mu(x,y)" />
+      <term key="rightTerm" text="1" />
+    </equation>
+    <plot_function width="600" height="600" axes_style="boxed" xLabelsNumber="5" yLabelsNumber="5" gridLineColor="#7B000000" xType="linear" yType="linear" functionsNumber="1">
+      <term key="yMaxValue" text="" />
+      <term key="yFunction" color="#FF0000FF" width="3" lineStyle="solid" shapeType="none" shapeSize="300" code="content:com.mkulesh.micromath.link.mu:2">
+        <term key="argTerm1" text="0" />
+        <term key="argTerm2" text="0" />
+      </term>
+      <term key="yMinValue" text="" />
+      <term key="xMinValue" text="" />
+      <term key="xFunction" text="x" />
+      <term key="xMaxValue" text="" />
+    </plot_function>
+    <equation>
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" code="matrix" rows="1" cols="4">
+        <term key="element[0][0]" text="1.1" />
+        <term key="element[0][1]" text="0.9" />
+        <term key="element[0][2]" text="-1" />
+        <term key="element[0][3]" text="1" />
+      </term>
+    </equation>
+    <result resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" text="" />
+    </result>
+    <plot_contour plotStyle="surface" width="600" height="600" axes_style="boxed" meshLines="true" meshFill="true" meshOpacity="160" rotation="35" elevation="25" xLabelsNumber="4" yLabelsNumber="4" gridLineColor="#FF787878" xType="linear" yType="linear" zLabelsNumber="5" colorMap="rainbow">
+      <term key="yMaxValue" text="" />
+      <term key="yMinValue" text="" />
+      <term key="xMinValue" text="" />
+      <term key="zFunction" code="content:com.mkulesh.micromath.link.mu:2">
+        <term key="argTerm1" text="x" />
+        <term key="argTerm2" text="y" />
+      </term>
+      <term key="xMaxValue" text="" />
+    </plot_contour>
+    <equation>
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" code="matrix" rows="1" cols="6">
+        <term key="element[0][0]" text="1.0" />
+        <term key="element[0][1]" text="-1" />
+        <term key="element[0][2]" text="-1" />
+        <term key="element[0][3]" text="1" />
+        <term key="element[0][4]" text="0.9" />
+        <term key="element[0][5]" text="1.1" />
+      </term>
+    </equation>
+    <result resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="result" />
+      <term key="rightTerm" code="content:com.mkulesh.micromath.link.mu:2">
+        <term key="argTerm1" text="0" />
+        <term key="argTerm2" text="0" />
+      </term>
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="result" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="desired" />
+      <term key="rightTerm" text="1" />
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desired" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="end" />
+      <term key="rightTerm" text="begin" />
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="end" />
+      <term key="rightTerm" text="" />
+    </result>
+    <text_fragment numbering="true">
+      <term key="text" text="TC: negative X interval" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="begin" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="1" />
+        <term key="rightTerm" text="begin" />
+      </term>
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="begin" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="x" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="-9.9" />
+        <term key="nextValue" text="-9.8" />
+        <term key="maxValue" text="11" />
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="f(x)" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" code="sin">
+          <term key="argTerm" text="x" />
+        </term>
+        <term key="rightTerm" code="abs_layout">
+          <term key="argTerm" text="x" />
+        </term>
+      </term>
+    </equation>
+    <plot_function width="667" height="600" axes_style="crossed" xLabelsNumber="5" yLabelsNumber="5" gridLineColor="#7B000000" xType="linear" yType="linear" functionsNumber="1">
+      <term key="yMaxValue" text="" />
+      <term key="yFunction" color="#FF0000FF" width="3" lineStyle="solid" shapeType="none" shapeSize="300" code="content:com.mkulesh.micromath.link.f">
+        <term key="argTerm" text="x" />
+      </term>
+      <term key="yMinValue" text="" />
+      <term key="xMinValue" text="" />
+      <term key="xFunction" text="x" />
+      <term key="xMaxValue" text="" />
+    </plot_function>
+    <equation>
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" code="matrix" rows="1" cols="4">
+        <term key="element[0][0]" text="7.9" />
+        <term key="element[0][1]" text="-11" />
+        <term key="element[0][2]" text="-9.9" />
+        <term key="element[0][3]" text="11" />
+      </term>
+    </equation>
+    <result resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="result" />
+      <term key="rightTerm" code="content:com.mkulesh.micromath.link.f">
+        <term key="argTerm" text="0" />
+      </term>
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="result" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="desired" />
+      <term key="rightTerm" text="0" />
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desired" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="end" />
+      <term key="rightTerm" text="begin" />
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="end" />
+      <term key="rightTerm" text="" />
+    </result>
+    <text_fragment numbering="true">
+      <term key="text" text="TC: depending intervals" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="begin" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="1" />
+        <term key="rightTerm" text="begin" />
+      </term>
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="begin" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="i1" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="1" />
+        <term key="nextValue" text="1.01" />
+        <term key="maxValue" text="2" />
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="i2" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="3" />
+        <term key="rightTerm" text="i1" />
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="G(a,b)" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="a" />
+        <term key="rightTerm" text="b" />
+      </term>
+    </equation>
+    <plot_contour plotStyle="contour" width="736" height="736" axes_style="boxed" xLabelsNumber="4" yLabelsNumber="4" gridLineColor="#FF787878" xType="linear" yType="linear" zLabelsNumber="10" colorMap="earthsky">
+      <term key="yMaxValue" text="" />
+      <term key="yMinValue" text="" />
+      <term key="xMinValue" text="" />
+      <term key="zFunction" code="content:com.mkulesh.micromath.link.G:2">
+        <term key="argTerm1" text="i1" />
+        <term key="argTerm2" text="i2" />
+      </term>
+      <term key="xMaxValue" text="" />
+    </plot_contour>
+    <equation>
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" code="matrix" rows="1" cols="6">
+        <term key="element[0][0]" text="5" />
+        <term key="element[0][1]" text="4" />
+        <term key="element[0][2]" text="1" />
+        <term key="element[0][3]" text="2" />
+        <term key="element[0][4]" text="5" />
+        <term key="element[0][5]" text="7" />
+      </term>
+    </equation>
+    <result resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="i3" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" text="-5" />
+        <term key="rightTerm" text="i1" />
+      </term>
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="i4" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" text="5" />
+        <term key="rightTerm" text="i2" />
+      </term>
+    </equation>
+    <plot_contour plotStyle="contour" width="736" height="736" axes_style="boxed" xLabelsNumber="4" yLabelsNumber="4" gridLineColor="#FF787878" xType="linear" yType="linear" zLabelsNumber="10" colorMap="greenblue">
+      <term key="yMaxValue" text="" />
+      <term key="yMinValue" text="" />
+      <term key="xMinValue" text="" />
+      <term key="zFunction" code="content:com.mkulesh.micromath.link.G:2">
+        <term key="argTerm1" text="i3" />
+        <term key="argTerm2" text="i4" />
+      </term>
+      <term key="xMaxValue" text="" />
+    </plot_contour>
+    <equation>
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" code="matrix" rows="1" cols="6">
+        <term key="element[0][0]" text="25" />
+        <term key="element[0][1]" text="20" />
+        <term key="element[0][2]" text="-10" />
+        <term key="element[0][3]" text="-5" />
+        <term key="element[0][4]" text="10" />
+        <term key="element[0][5]" text="20" />
+      </term>
+    </equation>
+    <result resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desiredPlotBounds" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="result" />
+      <term key="rightTerm" code="content:com.mkulesh.micromath.link.G:2">
+        <term key="argTerm1" text="0" />
+        <term key="argTerm2" text="0" />
+      </term>
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="result" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="desired" />
+      <term key="rightTerm" text="0" />
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="desired" />
+      <term key="rightTerm" text="" />
+    </result>
+    <equation>
+      <term key="leftTerm" text="end" />
+      <term key="rightTerm" text="begin" />
+    </equation>
+    <result inRightOfPrevious="true" resultFieldType="real" arrayLength="7">
+      <term key="leftTerm" text="end" />
+      <term key="rightTerm" text="" />
+    </result>
+  </formulaList>
+</micromath>
