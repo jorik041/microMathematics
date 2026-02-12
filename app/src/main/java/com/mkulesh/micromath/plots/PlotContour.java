@@ -331,7 +331,6 @@ public class PlotContour extends CalculationResult implements SizeChangingLayout
     @Override
     public void onPlotPropertiesChange(boolean isChanged)
     {
-        getFormulaList().finishActiveActionMode();
         if (!isChanged)
         {
             formulaState = null;

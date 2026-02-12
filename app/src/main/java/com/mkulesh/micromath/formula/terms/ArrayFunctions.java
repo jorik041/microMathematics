@@ -289,7 +289,6 @@ public class ArrayFunctions extends FunctionBase implements FocusChangeIf
             dim.assign(matrix.getDim());
             final DialogMatrixSettings d = new DialogMatrixSettings(getFormulaList().getActivity(), isChanged ->
             {
-                getFormulaList().finishActiveActionMode();
                 if (!isChanged)
                 {
                     return;
