@@ -28,6 +28,10 @@ After LaTeX is installed, call
 # ./build-doc.sh <version_code>
 ```
 
-Android Emulator used to export documentation: Nexus 4, 768 x 1280, 320 dpi
+AVD configuration used to export documentation (../avd/<Your_AVD_Name>.avd/config.ini): Nexus 4, 768 x 1280, 320 dpi:
+hw.device.name=Nexus 4
+hw.lcd.density=320
+hw.lcd.height=1280
+hw.lcd.width=768
 
 On the device, generated documentation is placed here: /data/data/com.mkulesh.micromath.plus/files/doc
