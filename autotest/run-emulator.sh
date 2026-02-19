@@ -49,6 +49,15 @@ ${ADB_CMD} shell pm list packages | grep ${APK_PACK}
 
 echo Starting app...
 ${ADB_CMD} shell am start -S -W -n ${APK_PACK}/.${APK_ACT} -a com.mkulesh.micromath.plus.AUTOTEST
+sleep 15
+
+echo "Changing emulator orientation..."
+# Disable auto-rotation
+${ADB_CMD} shell settings put system accelerometer_rotation 0
+# Set to landscape orientation (value 1 for landscape)
+${ADB_CMD} shell settings put system user_rotation 1
+sleep 15
+${ADB_CMD} shell settings put system user_rotation 0
 
 echo Waiting until app is finished...
 while ("`${ADB_CMD} shell dumpsys activity | grep top-activity | grep -c ${APK_PACK} | tr -d '\r' `" != "0")
