@@ -7,14 +7,14 @@ In order to build the documentation, the LaTeX (texlive) and following latex pac
 
 - as the root user:
 ```
-# yum install texlive
-# yum install texlive-gensymb
-# yum install texlive-lipsum texlive-sectsty texlive-t2 texlive-lastpage texlive-lettrine texlive-titling texlive-fonts-tlwg babel texlive-minifp
-# yum install texlive-cyrillic texlive-babel-russian texlive-hyphen-russian texlive-lh 
-# yum install texlive-babel-german texlive-hyphen-german
-# yum install texlive-babel-portuges texlive-hyphen-portuguese
-# yum install texlive-babel-spanish texlive-hyphen-spanish
-# yum install texlive-collection-mathextra
+# dnf install texlive
+# dnf install texlive-gensymb
+# dnf install texlive-lipsum texlive-sectsty texlive-t2 texlive-lastpage texlive-lettrine texlive-titling texlive-fonts-tlwg babel texlive-minifp
+# dnf install texlive-cyrillic texlive-babel-russian texlive-hyphen-russian texlive-lh 
+# dnf install texlive-babel-german texlive-hyphen-german
+# dnf install texlive-babel-portuges texlive-hyphen-portuguese
+# dnf install texlive-babel-spanish texlive-hyphen-spanish
+# dnf install texlive-collection-mathextra
 # fmtutil -sys --all
 ```
 - as a local user (not root):
